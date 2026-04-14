@@ -1,0 +1,15 @@
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const authRoutes = require('./routes/auth.routes.js');
+const transactionRoutes = require('./routes/transaction.routes.js');
+const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
+const connectDB = require('./config/db.js');
+app.use(cors());
+connectDB();
+app.use(express.json());
+app.use('api/auth', authRoutes);
+app.use('api/transactions', transactionRoutes);
+module.exports = app;
