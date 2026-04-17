@@ -18,18 +18,18 @@ router.use(auth);
 router.get('/summary', getSummary);
 
 // Create transaction
-router.post('/', createTransaction);
+router.post('/transactions', createTransaction);
 
 // Get all transactions
-router.get('/', getTransactions);
+router.get('/transactions', getTransactions);
 
 // Get single transaction
-router.get('/:transactionId', getTransactionById);
+router.get('/transactions/:id', getTransactionById);
 
 // Update transaction
-router.put('/:transactionId', updateTransaction);
+router.put('/transactions/:id', updateTransaction);
 
 // Delete transaction
-router.delete('/:transactionId', deleteTransaction);
+router.delete('/transactions/:Id', deleteTransaction);
 
 module.exports = router;
