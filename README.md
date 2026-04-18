@@ -126,13 +126,14 @@ npm start
 ---
 
 ### Transaction Routes
+```text
 
 POST   /api/transactions         ( Add transaction )
 GET    /api/transactions         ( Get all transactions )
 GET    /api/transactions/:id     ( Get single transaction )
 PUT    /api/transactions/:id     ( Update transaction )
 DELETE /api/transactions/:id     ( Delete transaction )
-
+```
 ---
 
 
