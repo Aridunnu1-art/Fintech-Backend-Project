@@ -38,14 +38,27 @@ This API enables users to:
 
 ```text
 src/
-├── config/       # Configuration files (DB, env checks, cloudinary)
-├── controllers/  # Business logic
-├── models/       # Mongoose schemas
+├── config/       # Configuration files (DB, env checks)
+   └── db.js
+├── controllers/  # Handles HTTP requests and responses
+   └── transaction.controller.js   
+   └── auth.controller.js 
+├── services/     # Business logic and core functionality
+   └── transaction.services.js
+   └── transaction.controller.js   
+├── models/       # Mongoose schemas and database models
+   └── transaction.js
+   └── user.js
 ├── routes/       # API routes
+   └── auth.routes.js
+    └── transaction.routes.js
 ├── middleware/   # Custom middleware (auth, error handling)
-├── utils/        # Utility functions
+   └── auth.js
+├── validator/    # Request validation logic (Joi or custom validation)
+   └── validtion.js   
 ├── app.js        # Express app setup
-└── server.js     # Entry point
+server.js/
+
 ```
 
 ## 🔐 Features
