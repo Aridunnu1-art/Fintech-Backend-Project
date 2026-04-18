@@ -4,7 +4,7 @@
 
 ## 📊 Smart Budget & Spending Tracker API 
 
-A RESTful API that helps users track income and expenses, manage budgets, and receive alerts to make smarter financial decisions.
+* A RESTful API that helps users track income and expenses, manage budgets, and receive alerts to make smarter financial decisions.
 ---
 
 ## 🚀 Project Overview
@@ -34,21 +34,20 @@ This API enables users to:
 * dotenv (for environment variables)
 
 ---
-
 ## 📁 Project Structure
 
- src/
- ├── config/       # Configuration files (DB, env checks, cloudinary)
- ├── controllers/  # Business logic
- ├── models/       # Mongoose schemas
- ├── routes/       # API routes
- ├── middleware/   # Custom middleware (auth, error handling)
- ├── utils/        # Utility functions
- ├── app.js        # Express app setup
- └── server.js     # Entry point
----
+```text
+src/
+├── config/       # Configuration files (DB, env checks, cloudinary)
+├── controllers/  # Business logic
+├── models/       # Mongoose schemas
+├── routes/       # API routes
+├── middleware/   # Custom middleware (auth, error handling)
+├── utils/        # Utility functions
+├── app.js        # Express app setup
+└── server.js     # Entry point
+```
 
----
 ## 🔐 Features
 1. Authentication
    * User Registration
@@ -120,19 +119,19 @@ npm start
 ## 📌 API Endpoints
 
 ### Auth Routes
-POST /api/auth/register
-POST /api/auth/login
-GET  /api/auth/profile
+* POST /api/auth/register     ( Register a new user )
+* POST /api/auth/login        ( Login user )
+* GET  /api/auth/profile      ( Get user profile )
 
 ---
 
 ### Transaction Routes
 
-POST   /api/transactions
-GET    /api/transactions
-GET    /api/transactions/:id
-PUT    /api/transactions/:id
-DELETE /api/transactions/:id
+POST   /api/transactions         ( Add transaction )
+GET    /api/transactions         ( Get all transactions )
+GET    /api/transactions/:id     ( Get single transaction )
+PUT    /api/transactions/:id     ( Update transaction )
+DELETE /api/transactions/:id     ( Delete transaction )
 
 ---
 
@@ -140,9 +139,9 @@ DELETE /api/transactions/:id
 ---
 
 ## 🔐 Authentication
-
-* Uses JWT (JSON Web Tokens)
-* Include token in headers:
+* User registration
+* Uses login
+* JWT-based authentication
 
 ```http
 Authorization: Bearer <token>
@@ -208,5 +207,3 @@ You can test endpoints using:
 Developed by Backend Group 3
 Feel free to connect and contribute 🚀
 
-
-## my API doc
