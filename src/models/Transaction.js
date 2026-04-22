@@ -10,7 +10,7 @@ const transactionSchema = new mongoose.Schema(
     amount: {
       type: Number,
       required: [true, 'Please provide an amount'],
-      min: 0,
+      min: [0.01, 'Amount must be greater than zero'],
     },
     type: {
       type: String,
@@ -27,11 +27,6 @@ const transactionSchema = new mongoose.Schema(
       trim: true,
     },
     date: {
-      type: Date,
-      required: [true, 'Please provide a date'],
-      default: Date.now,
-    },
-    createdAt: {
       type: Date,
       default: Date.now,
     },

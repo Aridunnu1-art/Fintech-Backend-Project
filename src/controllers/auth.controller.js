@@ -5,7 +5,10 @@ const register = async (req, res) => {
     const result = await authService.register(req.body);
     res.status(result.status).json(result.body);
   } catch (error) {
-    res.status(error.status || 500).json({ message: error.message, ...(error.details ? { details: error.details } : { error: error.message }) });
+    console.log(error); // keep this for debugging
+    res.status(error.status || 500).json({
+      message: error.message,
+    });
   }
 };
 
@@ -14,11 +17,10 @@ const login = async (req, res) => {
     const result = await authService.login(req.body);
     res.status(result.status).json(result.body);
   } catch (error) {
-    res.status(error.status || 500).json({ message: error.message, ...(error.details ? { details: error.details } : { error: error.message }) });
+    res.status(error.status || 500).json({
+      message: error.message,
+    });
   }
 };
 
-module.exports = {
-  register,
-  login,
-};
+module.exports = { register, login };

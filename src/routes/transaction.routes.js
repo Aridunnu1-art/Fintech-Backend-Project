@@ -1,5 +1,7 @@
+const auth = require("../middleware/auth");
 const express = require('express');
-const auth = require('../middleware/auth');
+const router = express.Router();
+
 const {
   createTransaction,
   getTransactions,
@@ -8,28 +10,11 @@ const {
   deleteTransaction,
   getSummary,
 } = require('../controllers/transaction.controller');
-
-const router = express.Router();
-
-// All transaction routes require authentication
 router.use(auth);
-
-// Get summary
+router.post('/', createTransaction);
+router.get('/', getTransactions);
 router.get('/summary', getSummary);
-
-// Create transaction
-router.post('/transactions', createTransaction);
-
-// Get all transactions
-router.get('/transactions', getTransactions);
-
-// Get single transaction
-router.get('/transactions/:id', getTransactionById);
-
-// Update transaction
-router.put('/transactions/:id', updateTransaction);
-
-// Delete transaction
-router.delete('/transactions/:Id', deleteTransaction);
-
+router.get('/:id', getTransactionById);
+router.put('/:id', updateTransaction);
+router.delete('/:id', deleteTransaction);
 module.exports = router;
