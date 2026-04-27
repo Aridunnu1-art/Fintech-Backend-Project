@@ -1,26 +1,21 @@
-# GROUP 3 Assignment
+# 📊 Smart Budget & Spending Tracker API
 
----
+A RESTful API that helps users manage their finances by tracking income, expenses, budgets, and spending behavior.
 
-## 📊 Smart Budget & Spending Tracker API 
-
-* A RESTful API that helps users track income and expenses, manage budgets, and receive alerts to make smarter financial decisions.
 ---
 
 ## 🚀 Project Overview
 
-The Smart Budget & Spending Tracker API is a backend service designed to solve everyday financial problems such as:
-
-* Poor spending habits
-* Lack of budgeting discipline
-* No visibility into financial activities
-
-This API enables users to:
+The Smart Budget & Spending Tracker API is a backend service designed to help users:
 
 * Track income and expenses
-* Set monthly budgets
-* Receive alerts when overspending
+* Monitor their financial balance
+* Set a monthly budget
+* Receive alerts when nearing or exceeding budget
 * View financial summaries and analytics
+
+This project simulates a fintech backend system focused on improving financial awareness and discipline.
+
 ---
 
 ## 🛠️ Tech Stack
@@ -29,62 +24,169 @@ This API enables users to:
 * Express.js
 * MongoDB
 * Mongoose
-* JWT Authentication
-* Bcrypt (Password Hashing)
-* dotenv (for environment variables)
+* JWT (Authentication)
+* Bcrypt (Password hashing)
+* Joi (Validation)
+* dotenv (Environment variables)
 
 ---
+
 ## 📁 Project Structure
 
-```text
+```
 src/
-├── config/       # Configuration files (DB, env checks)
-   └── db.js
-├── controllers/  # Handles HTTP requests and responses
-   └── transaction.controller.js   
-   └── auth.controller.js 
-├── services/     # Business logic and core functionality
-   └── transaction.services.js
-   └── transaction.controller.js   
-├── models/       # Mongoose schemas and database models
-   └── transaction.js
-   └── user.js
-├── routes/       # API routes
-   └── auth.routes.js
-    └── transaction.routes.js
-├── middleware/   # Custom middleware (auth, error handling)
-   └── auth.js
-├── validator/    # Request validation logic (Joi or custom validation)
-   └── validtion.js   
-├── app.js        # Express app setup
-server.js/
-
+├── config/        # Database connection
+├── controllers/   # Handles request/response logic
+├── models/        # Mongoose schemas
+├── routes/        # API routes
+├── middleware/    # Authentication middleware
+├── services/      # Business logic
+├── validator/     # Joi validation schemas
+├── app.js         # Express app setup
+└── server.js      # Entry point
 ```
 
-## 🔐 Features
-1. Authentication
-   * User Registration
-   * User Login
-   * Secure JWT-based Authentication
+---
 
-2. User Profile
-   * Store user information
-   * Set monthly budget
-3. Transactions
-   * Add income and expenses
-   * Categorize transactions
-   * Update and delete records
-4. Budget Tracking
-   * Monitor total expenses
-   * Compare with monthly budget
-5. Alerts System
-  * Notify users when:
-  * 80% of budget is reached
-  * Budget is exceeded
-6. Analytics
-   * Total income and expenses
-   * Balance calculation
-   * Category-based spending insights
+## 🔐 Authentication & Security
+
+* Uses **JWT (JSON Web Tokens)** for authentication
+* Passwords are hashed using **bcrypt**
+* Protected routes require token:
+
+```
+Authorization: Bearer <token>
+```
+
+* Middleware verifies user identity before accessing secured endpoints
+
+---
+
+## 🧩 Database Schema
+
+### 👤 User Model
+
+* name: String
+* email: String (unique)
+* password: String (hashed)
+* balance: Number (default: 0)
+* budget: Number (optional)
+
+---
+
+### 💳 Transaction Model
+
+* userId: ObjectId (ref: User)
+* amount: Number
+* type: "income" | "expense"
+* category: String
+* description: String
+* date: Date
+
+---
+
+## 📌 API Endpoints
+
+### 🔑 Auth Routes
+
+| Method | Endpoint           | Description     |
+| ------ | ------------------ | --------------- |
+| POST   | /api/auth/register | Register a user |
+| POST   | /api/auth/login    | Login user      |
+
+---
+
+### 💰 Transaction Routes
+
+| Method | Endpoint              | Description            |
+| ------ | --------------------- | ---------------------- |
+| POST   | /api/transactions     | Create transaction     |
+| GET    | /api/transactions     | Get all transactions   |
+| GET    | /api/transactions/:id | Get single transaction |
+| PUT    | /api/transactions/:id | Update transaction     |
+| DELETE | /api/transactions/:id | Delete transaction     |
+
+---
+
+### 📊 Additional Features
+
+| Method | Endpoint                  | Description           |
+| ------ | ------------------------- | --------------------- |
+| PUT    | /api/transactions/budget  | Set user budget       |
+| GET    | /api/transactions/summary | Get financial summary |
+
+---
+
+## 🧠 Core Features
+
+### ✅ Balance Management
+
+* Income increases balance
+* Expense decreases balance
+
+---
+
+### 💸 Budget Tracking
+
+* Users can set a monthly budget
+* System tracks total expenses against budget
+
+---
+
+### 🚨 Smart Alerts
+
+* ⚠️ Alert when 80% of budget is used
+* 🚨 Alert when budget is exceeded
+
+---
+
+### 📊 Financial Summary
+
+Returns:
+
+* Total income
+* Total expenses
+* Remaining balance
+
+---
+
+## 🧪 Example Request & Response
+
+### ➤ Create Transaction
+
+**Request:**
+
+```json
+POST /api/transactions
+
+{
+  "amount": 5000,
+  "type": "expense",
+  "category": "food",
+  "description": "Lunch"
+}
+```
+
+---
+
+**Response:**
+
+```json
+{
+  "message": "Transaction created successfully",
+  "balance": 45000,
+  "alert": "⚠️ You have used 80% of your budget",
+  "transaction": {
+    "id": "12345",
+    "amount": 5000,
+    "type": "expense",
+    "category": "food",
+    "description": "Lunch",
+    "date": "2026-04-27"
+  }
+}
+```
+
 ---
 
 ## ⚙️ Installation
@@ -92,9 +194,11 @@ server.js/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Aridunnu1-art/Fintech-Backend-Project
-cd API Deployment
+git clone https://github.com/Aridunnu1-art/Fintech-Backend-Project.git
+cd Fintech-Backend-Project
 ```
+
+---
 
 2. Install dependencies:
 
@@ -102,13 +206,14 @@ cd API Deployment
 npm install
 ```
 
-3. Create a `.env` file in the root directory:
+---
+
+3. Create `.env` file:
 
 ```env
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
-
 ```
 
 ---
@@ -129,95 +234,46 @@ npm start
 
 ---
 
-## 📌 API Endpoints
-
-### Auth Routes
-* POST /api/auth/register     ( Register a new user )
-* POST /api/auth/login        ( Login user )
-* GET  /api/auth/profile      ( Get user profile )
-
----
-
-### Transaction Routes
-```text
-
-POST   /api/transactions         ( Add transaction )
-GET    /api/transactions         ( Get all transactions )
-GET    /api/transactions/:id     ( Get single transaction )
-PUT    /api/transactions/:id     ( Update transaction )
-DELETE /api/transactions/:id     ( Delete transaction )
-```
----
-
-
----
-
-## 🔐 Authentication
-* User registration
-* Uses login
-* JWT-based authentication
-
-```http
-Authorization: Bearer <token>
-```
-
----
-
-## ❗ Error Handling
-
-* Centralized error handling middleware
-* Returns consistent JSON responses:
-
-```json
-{
-  "status": "error",
-  "message": "Something went wrong"
-}
-```
-
----
-
 ## 🧪 Testing
 
 You can test endpoints using:
 
-* Postman
 * Thunder Client
+* Postman
 
 ---
 
 ## 📦 Deployment
 
-* Can be deployed on platforms like:
+This API can be deployed on:
 
-  * Render
-  * Railway
-  * Heroku
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a new branch (`feature/your-feature`)
-3. Commit your changes
-4. Push to your branch
-5. Open a Pull Request
+* Render
+* Railway
+* Heroku
 
 ---
 
-## 🧠 Best Practices
+## 🌐 Repository Link
 
-* Use environment variables for sensitive data
-* Follow RESTful conventions
-* Write clean and modular code
-* Validate all incoming data
+👉 https://github.com/Aridunnu1-art/Fintech-Backend-Project
 
 ---
 
+## 👨‍💻 Contributors
 
-## 👨‍💻 Author
+Backend Group 3
 
-Developed by Backend Group 3
-Feel free to connect and contribute 🚀
+---
 
+## 🎯 Conclusion
+
+This project demonstrates:
+
+* RESTful API design
+* Authentication & security
+* Financial data handling
+* Budget tracking and analytics
+
+It serves as a solid foundation for building real-world fintech applications.
+
+---
