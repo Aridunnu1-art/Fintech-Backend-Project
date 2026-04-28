@@ -252,7 +252,19 @@ This API can be deployed on:
 * Heroku
 
 ---
+## 🌐 Live API
 
+**Base URL:**
+https://fintech-backend-project-96mb.onrender.com/api
+
+You can test all endpoints using Postman or Thunder Client.
+
+---
+
+### 🔍 Test Endpoint
+
+**GET**
+https://fintech-backend-project-96mb.onrender.com/api
 ## 🌐 Repository Link
 
 👉 https://github.com/Aridunnu1-art/Fintech-Backend-Project
